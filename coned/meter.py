@@ -185,6 +185,11 @@ class Meter(object):
             _LOGGER.debug("Waiting for = %s millis", sleep)
             await page.waitFor(sleep)
 
+        opower_url = 'https://www.coned.com/en/accounts-billing/dashboard?tab1=billingandusage-1&tab2=sectionEnergyBillingUsage-1&tab3=sectionRealTimeData-3'
+        await page.goto(opower_url)
+        sleep = 5000
+        await page.waitFor(sleep)
+            
         # Access the API using your newly acquired authentication cookies!
         api_page = await browser.newPage()
         api_url = 'https://' + self.data_site + '.opower.com/ei/edge/apis/cws-real-time-ami-v1/cws/' + self.data_site + '/accounts/' + self.account_uuid + '/meters/' + self.meter_number + '/usage'
